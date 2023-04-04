@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auspicious Times Alarm</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <h1>Auspicious Times Alarm</h1>
+
+	<p>Please allow notifications to receive alerts for Auspicious Times.</p>
+
+	<button id="allow">Allow Notifications</button>
+
+	<script>
+		// check if browser supports notifications
+		if ("Notification" in window) {
+
+			// ask user for permission to show notifications
+			Notification.requestPermission().then(function(result) {
+				if (result === "denied") {
+					console.log("Notifications not allowed.");
+				} else if (result === "granted") {
+					console.log("Notifications allowed.");
+
+					// schedule notifications
+					var now = new Date();
+					var alarm01 = new Date("2023-04-12T00:00:00");
+					var alarm02 = new Date("2023-04-14T14:59:00");
+					var alarm03Start = new Date("2023-04-14T08:35:00");
+					var alarm03End = new Date("2023-04-14T21:23:00");
+					var alarm04 = new Date("2023-04-14T15:29:00");
+                    var alarm05 = new Date("2023-04-04T10:44:00");
+					
+					if (now <= alarm01) {
+						var notification = new Notification("Auspicious Times - Alarm 01", {
+							body: "It's time to perform your daily rituals.",
+							icon: "favicon.ico"
+						});
+					} else if (now <= alarm02) {
+						var notification = new Notification("Auspicious Times - Alarm 02", {
+							body: "It's time to perform your daily rituals.",
+							icon: "favicon.ico"
+						});
+					} else if (now >= alarm03Start && now <= alarm03End) {
+						var notification = new Notification("Auspicious Times - Alarm 03", {
+							body: "It's time to perform your daily rituals.",
+							icon: "favicon.ico"
+						});
+					} else if (now <= alarm04) {
+						var notification = new Notification("Auspicious Times - Alarm 04", {
+							body: "It's time to perform your daily rituals.",
+							icon: "favicon.ico"
+						});
+					}
+                else if (now <= alarm05) {
+						var notification = new Notification("Auspicious Times - Alarm 05", {
+							body: "It's time to perform your daily rituals.",
+							icon: "favicon.ico"
+						});
+                    }
+                    else {
+						console.log("No upcoming alarms.");
+					}
+					
+					if (notification) {
+						notification.onclick = function() {
+							window.focus();
+							this.close();
+						}
+						setTimeout(function() {
+							notification.close();
+						}, 10000);
+					}
+				}
+			});
+
+		} else {
+			console.log("Notifications not supported.");
+		}
+	</script>
+
+    
+</body>
+</html>
